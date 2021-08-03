@@ -16,17 +16,20 @@ void yyerror(char* c);
 /* NUMBER          [0-9]+ */
 LETRAS         [a-zA-Z]+
 ESPACO          " "+
-/* PALAVRA       {LETRAS}+{ESPACO}* */
-/* NOME          {PALAVRA}+{ESPACO}* */
+FRASE        ({LETRAS}*{ESPACO}*)+
+NEWLINE      \n
 
 %%
 
 "\\begin{document}"                     { yylval.string = yytext;  return BEGINDOCUMENT; }
 "\\end{document}"                       { yylval.string = yytext;  return ENDDOCUMENT; }
-USEPACKAGE                              { }
+"\\documentclass{"{LETRAS}"}"           { yylval.string = yytext;  return CLASSE;}
+{FRASE}                                 { yylval.string = yytext;  return CONTEUDO; }
 TITLE                                   { }
 AUTHOR                                  { }
 DOCUMENTCLASS                           { }
+
+{NEWLINE}                               { /*Ignora quebra de linha*/}
 .                                       { yyerror("Token não reconhecido^: "); printf(" %s\n",yytext);}
 %%
 

@@ -1,0 +1,79 @@
+\documentclass[portuguese,brazilian,12pt,final]{article}
+\usepackage[brazil]{babel}      % Pacotes da lingua portuguesa
+\usepackage[utf8]{inputenc}     % com os caracteres com ç e acentuação
+                                % e hifenização em português
+
+
+\usepackage{isomath}       % Pacote matemático
+\usepackage{natbib}        % habilita novos comandos de citação
+\usepackage{amsmath}       % Pacote matemático
+\usepackage{graphicx}      % Para inserir figuras
+\usepackage{indentfirst}   % Para identar o primeiro paragrafo da seção
+
+
+
+% Definição de novos comandos:
+\newcommand{\Dx}{\Delta x}
+\newcommand{\Dy}{\Delta y}
+\newcommand{\imax}{i_{\max}}
+\newcommand{\jmax}{j_{\min}}
+
+
+
+
+
+% Comandos de formatação da página
+\setlength{\baselineskip}{16.0pt}
+\setlength{\parskip}{3pt plus 2pt}
+\setlength{\parindent}{20pt}
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{0.5cm}
+\setlength{\marginparsep}{0.75cm}
+\setlength{\marginparwidth}{2.5cm}
+\setlength{\marginparpush}{1.0cm}
+\setlength{\textwidth}{150mm}
+
+\begin{document}
+
+{para Iniciantes Exemplo} nova linha
+
+\section{Introdução}
+
+Para inserir um novo parágrafo, deixe uma ou mias linhas em branco.
+Note que todas as formulas estão entre
+que signifíca \textit{modo matemático inline}.
+
+A fonte padrão é Computer Modern, que inclui as variações \textit{itálico},
+\textbf{negrito}
+
+\section{Listas}
+
+Alguns exemplos de listas: A seguir uma lista numerada
+
+\begin{enumerate}
+\item Pão
+\item Queijo
+\item Presunto
+\end{enumerate}
+
+A seguir uma lista não numerada
+
+\begin{itemize}
+\item Maria
+\item João
+\end{itemize}
+
+\section{Figuras}
+
+
+A Figuratem sua largura igual a 70\% da largura do texto.
+
+Figuras e tabelas flutuam no texto. O tenta posicioná-las de forma a otimizar o máximo de espaço.
+
+Usando o comando label é possível referenciar a equação depois.
+
+A equação expressa a energia no modelo Ising.
+
+É possível definir novo comandos, veja no preâmbulo logo após os usepackages. Foram definidos os comandos Dx, Dy, imax e jmax:
+
+\end{document} 

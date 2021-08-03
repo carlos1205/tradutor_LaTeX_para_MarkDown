@@ -18,8 +18,9 @@
   char *string;
 }
 
-%token PACOTE AUTOR TITULO CLASSE <string>BEGINDOCUMENT <string>ENDDOCUMENT
-%type <string> principal
+%token PACOTE AUTOR TITULO <string>CLASSE <string>BEGINDOCUMENT <string>ENDDOCUMENT
+%token <string>CONTEUDO
+%type  <string>principal
 
 %%
 documentoLatex: configuracao identificacao principal
@@ -60,8 +61,7 @@ inicio: BEGINDOCUMENT { addref("\n[//]: # (BEGIN MARKDOWN)\n"); }
 fim: ENDDOCUMENT { addref("\n[//]: # (END MARKDOWN)\n"); }
 ;
 
-corpoLista: /* Vazio */
-  |
+corpoLista: CONTEUDO { addref($1);}
 ;
 
 /* corpoLista: "\chapter{"NOME"}" corpo capitulo | corpo;
