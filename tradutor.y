@@ -4,17 +4,7 @@
   #include"tradutor.h"
 %}
 
-%union {
-  char *c;
-}
-
-%token <c> NOME
-%token <c> CONTEUDO
-%token <c> CLASSE
-%token <c> PACOTE
-%token <c> AUTOR
-%token <c> TITULO
-%token BEGINDOCUMENT
+%token NOME CONTEUDO CLASSE PACOTE AUTOR TITULO BEGIN
 
 %%
 documentoLatex: configuracao identificacao principal
@@ -23,7 +13,7 @@ configuracao: CLASSE PACOTE | CLASSE;
 
 principal: inicio corpoLista fim;
 
-inicio: BEGINDOCUMENT;
+inicio: BEGIN;
 
 fim: "\end{document}";
 
