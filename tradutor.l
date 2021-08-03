@@ -3,7 +3,6 @@
 #include<stdlib.h>
 %}
 
-NUMBER [0-9]+
 PALAVRA [a-zA-Z]+
 ESPACO  " "
 NOME    ({PALAVRA}*{ESPACO}*)+
