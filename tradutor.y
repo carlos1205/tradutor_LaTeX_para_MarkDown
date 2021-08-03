@@ -33,7 +33,9 @@ CLASSE PACOTE {
   addref(c);
   addref(p); 
 }
-| CLASSE { addref("\n[//]: # (markdown class)"); }
+| CLASSE { addref("\n[//]: # (markdown class):"); 
+           addref($1);
+}
 ;
 
 identificacao: 

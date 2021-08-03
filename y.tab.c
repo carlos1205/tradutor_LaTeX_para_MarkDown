@@ -526,8 +526,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    26,    26,    29,    30,    36,    40,    41,    47,    53,
-      54,    55,    58,    61,    64
+       0,    26,    26,    29,    30,    36,    42,    43,    49,    55,
+      56,    57,    60,    63,    66
 };
 #endif
 
@@ -1333,62 +1333,64 @@ yyreduce:
 
   case 5:
 #line 36 "tradutor.y"
-         { addref("\n[//]: # (markdown class)"); }
-#line 1338 "y.tab.c"
+         { addref("\n[//]: # (markdown class):"); 
+           addref((yyvsp[0].string));
+}
+#line 1340 "y.tab.c"
     break;
 
   case 7:
-#line 41 "tradutor.y"
+#line 43 "tradutor.y"
              {
   char *t = "\n[//]: # (markdown title:)\n";
   char *a = "\n[//]: # (markdown author:)\n";
   addref(t);
   addref(a);
 }
-#line 1349 "y.tab.c"
+#line 1351 "y.tab.c"
     break;
 
   case 8:
-#line 47 "tradutor.y"
+#line 49 "tradutor.y"
          {
   char *t = "\n[//]: # (markdown title:)\n";
   addref(t);
 }
-#line 1358 "y.tab.c"
+#line 1360 "y.tab.c"
     break;
 
   case 10:
-#line 54 "tradutor.y"
+#line 56 "tradutor.y"
                { }
-#line 1364 "y.tab.c"
+#line 1366 "y.tab.c"
     break;
 
   case 11:
-#line 55 "tradutor.y"
+#line 57 "tradutor.y"
                           { }
-#line 1370 "y.tab.c"
+#line 1372 "y.tab.c"
     break;
 
   case 12:
-#line 58 "tradutor.y"
+#line 60 "tradutor.y"
                       { addref("\n[//]: # (BEGIN MARKDOWN)\n"); }
-#line 1376 "y.tab.c"
+#line 1378 "y.tab.c"
     break;
 
   case 13:
-#line 61 "tradutor.y"
+#line 63 "tradutor.y"
                  { addref("\n[//]: # (END MARKDOWN)\n"); }
-#line 1382 "y.tab.c"
+#line 1384 "y.tab.c"
     break;
 
   case 14:
-#line 64 "tradutor.y"
+#line 66 "tradutor.y"
                      { addref((yyvsp[0].string));}
-#line 1388 "y.tab.c"
+#line 1390 "y.tab.c"
     break;
 
 
-#line 1392 "y.tab.c"
+#line 1394 "y.tab.c"
 
       default: break;
     }
@@ -1620,7 +1622,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 92 "tradutor.y"
+#line 94 "tradutor.y"
 
 
 
