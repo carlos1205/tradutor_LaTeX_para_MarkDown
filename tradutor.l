@@ -1,27 +1,31 @@
 %option noyywrap
 %{
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "y.tab.h"
+
+
+void yyerror(char* c);
 %}
 
-PALAVRA [a-zA-Z]+
-ESPACO  " "
-NOME    ({PALAVRA}*{ESPACO}*)+
+NUMBER          [0-9]+
+LETRAS         [a-zA-Z]+
+ESPACO          " "+
+PALAVRA       {LETRAS}+{ESPACO}*
+NOME          {PALAVRA}+{ESPACO}*
 
 %%
 
-"\\begin{document}"         { printf("BEGINDOCUMENT"); }
-"\\begin{enumerate}"        { printf("BEGINENUMERATE"); }
-"\\begin{itemize}"          { printf("BEGINITEMIZE"); }
-"\\end{itemize}"            { printf("ENDITEMIZE"); }
-"\\end{enumerate}"          { printf("ENDENUMERATE"); }
-"\\end{document}"           { printf("Reconhecido: %s", yytext); }
-{NUMBER}                    { printf("NUMBER: %s", yytext); }
-{NOME}                      { printf("Nome: %s", yytext); }
-
-.                           { puts("não reconhecido"); }
+"begin"                                   { return BEGINDOCUMENT; }
+"end"                                     { return ENDDOCUMENT; }
+"usepackage"                              { return PACOTE; }
+"title"                                   { return TITULO; }
+"author"                                  { return AUTOR; }
+"documentclass"                           { return CLASSE; }
+.                                         { yyerror("Token não reconhecido\n"); }
 %%
 
-int main(argc, argv)
+/* int main(argc, argv)
 int argc;
 char **argv;
 {
@@ -33,6 +37,6 @@ char **argv;
   }
   yylex();
   return 0;
-}
+} */
 
 
