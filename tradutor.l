@@ -10,22 +10,22 @@ NOME    ({PALAVRA}*{ESPACO}*)+
 
 %%
 
-"\\begin{document}"  { printf("BEGINDOCUMENT"); }
-"\\begin{enumerate}" { printf("BEGINENUMERATE"); }
-"\\begin{itemize}"   { printf("BEGINITEMIZE"); }
-"\\end{itemize}"     { printf("ENDITEMIZE"); }
-"\\end{enumerate}"   { printf("ENDENUMERATE"); }
-"\\end{document}"    { printf("Reconhecido: %s\n", yytext); }
-{NUMBER}              { printf("NUMBER: %d\n", yytext); }
-{NOME}                 {printf("Nome: %s\n", yytext);}
+"\\begin{document}"         { printf("BEGINDOCUMENT"); }
+"\\begin{enumerate}"        { printf("BEGINENUMERATE"); }
+"\\begin{itemize}"          { printf("BEGINITEMIZE"); }
+"\\end{itemize}"            { printf("ENDITEMIZE"); }
+"\\end{enumerate}"          { printf("ENDENUMERATE"); }
+"\\end{document}"           { printf("Reconhecido: %s", yytext); }
+{NUMBER}                    { printf("NUMBER: %s", yytext); }
+{NOME}                      { printf("Nome: %s", yytext); }
 
-.                      {puts("não reconhecido");}
+.                           { puts("não reconhecido"); }
 %%
 
 int main(argc, argv)
 int argc;
 char **argv;
-
+{
   if(argc > 1){
     if(!(yyin = fopen(argv[1], "r"))){
       perror(argv[1]);
