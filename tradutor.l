@@ -6,6 +6,9 @@
 PALAVRA [a-zA-Z]+
 ESPACO  " "
 NOME    ({PALAVRA}*{ESPACO}*)+
+NUMBER  [0-9]+
+NEWLINE \n
+CONTEUDO ({PALAVRA}*{ESPACO}*{NEWLINE}*)+
 
 %%
 
@@ -17,6 +20,13 @@ NOME    ({PALAVRA}*{ESPACO}*)+
 "\\end{document}"           { printf("Reconhecido: %s", yytext); }
 {NUMBER}                    { printf("NUMBER: %s", yytext); }
 {NOME}                      { printf("Nome: %s", yytext); }
+"\\chapter"                 { printf("CHAPTER");}
+"}"                         { printf("}");}
+"{"{CONTEUDO}"}"            { printf("Conteudo: %s\n", yytext);}
+"\\usepackage{"{PALAVRA}"}"        { printf("Package: %s", yytext);}
+
+"\\documentclass{"{PALAVRA}"}"     { printf("CLASSE: %s", yytext);}
+
 
 .                           { puts("não reconhecido"); }
 %%
