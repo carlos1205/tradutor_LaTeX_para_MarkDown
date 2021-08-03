@@ -19,6 +19,9 @@ NOME    ({PALAVRA}*{ESPACO}*)+
 {NUMBER}              { printf("NUMBER: %d\n", yytext); }
 {NOME}                 {printf("Nome: %s\n", yytext);}
 
+apaga isso aqui
+
+
 .                      {puts("não reconhecido");}
 %%
 
