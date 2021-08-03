@@ -8,22 +8,25 @@
   void addref(char* c);
 %}
 
-/*]
+/*
   conexão flex e bison estabelecida,
   Caso queira só flex, retirar #include "y.tab.h" do arquivo flex ou comentar
   o arquivo bison inteiro.
 */
 
 %union {
-  char* buffer;
+  char *string;
 }
 
-%token <buffer> PACOTE AUTOR TITULO CLASSE BEGINDOCUMENT ENDDOCUMENT
+%token PACOTE AUTOR TITULO CLASSE <string>BEGINDOCUMENT <string>ENDDOCUMENT
+%type <string> principal
 
 %%
 documentoLatex: configuracao identificacao principal
 
-configuracao: CLASSE PACOTE {
+configuracao: 
+%empty |
+CLASSE PACOTE {
   char *c = "\n[//]: # (markdown class:)\n";
   char *p = "\n[//]: # (markdown package:)\n";
   addref(c);
@@ -32,7 +35,9 @@ configuracao: CLASSE PACOTE {
 | CLASSE { addref("\n[//]: # (markdown class)"); }
 ;
 
-identificacao: TITULO AUTOR {
+identificacao: 
+%empty |
+TITULO AUTOR {
   char *t = "\n[//]: # (markdown title:)\n";
   char *a = "\n[//]: # (markdown author:)\n";
   addref(t);
@@ -44,14 +49,15 @@ identificacao: TITULO AUTOR {
 }
 ;
 
-principal: /* Vazio */
+principal: %empty
+  | inicio fim { }
   | inicio corpoLista fim { }
 ;
 
-inicio: BEGINDOCUMENT { addref("\n[//]: # (begin markdown)"); }
+inicio: BEGINDOCUMENT { addref($<string>1); }
 ;
 
-fim: ENDDOCUMENT { addref("\n[//]: # (end markdown)"); }
+fim: ENDDOCUMENT { addref($<string>1); }
 ;
 
 corpoLista: /* Vazio */
@@ -95,8 +101,8 @@ void addref(char *c) {
   if(!f)
     printf("Erro ao abrir arquivo markdown.md");
   else
-    fprintf("%s\n", c);
-  fclose(fclose);
+    fprintf(f,"%s\n", c);
+  fclose(f);
 }
 
 

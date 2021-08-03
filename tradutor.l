@@ -2,27 +2,32 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "y.tab.h"
 
 
 void yyerror(char* c);
 %}
 
-NUMBER          [0-9]+
+
+/*
+  TENTANDO FAZER ALGO SIMPLES, CONEXÃO COM BISON E FLEX FEITA.
+*/
+/* NUMBER          [0-9]+ */
 LETRAS         [a-zA-Z]+
 ESPACO          " "+
-PALAVRA       {LETRAS}+{ESPACO}*
-NOME          {PALAVRA}+{ESPACO}*
+/* PALAVRA       {LETRAS}+{ESPACO}* */
+/* NOME          {PALAVRA}+{ESPACO}* */
 
 %%
 
-"begin"                                   { return BEGINDOCUMENT; }
-"end"                                     { return ENDDOCUMENT; }
-"usepackage"                              { return PACOTE; }
-"title"                                   { return TITULO; }
-"author"                                  { return AUTOR; }
-"documentclass"                           { return CLASSE; }
-.                                         { yyerror("Token não reconhecido\n"); }
+"\\begin{document}"                     { yylval.string = yytext;  return BEGINDOCUMENT; }
+end                                    { yylval.string = yytext;  return ENDDOCUMENT; }
+USEPACKAGE                              { }
+TITLE                                   { }
+AUTHOR                                  { }
+DOCUMENTCLASS                           { }
+.                                       { yyerror("Token não reconhecido^: "); printf(" %s\n",yytext);}
 %%
 
 /* int main(argc, argv)
