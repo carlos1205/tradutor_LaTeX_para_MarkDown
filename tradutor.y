@@ -4,7 +4,7 @@
   #include"tradutor.h"
 %}
 
-%token NOME CONTEUDO CLASSE PACOTE AUTOR TITULO
+%token NOME CONTEUDO CLASSE PACOTE AUTOR TITULO BEGIN
 
 %%
 documentoLatex: configuracao identificacao principal
@@ -13,7 +13,7 @@ configuracao: CLASSE PACOTE | CLASSE;
 
 principal: inicio corpoLista fim;
 
-inicio: "\begin{document}";
+inicio: BEGIN;
 
 fim: "\end{document}";
 

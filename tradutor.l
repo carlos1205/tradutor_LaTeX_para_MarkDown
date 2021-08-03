@@ -6,13 +6,10 @@
 PALAVRA [a-zA-Z]+
 ESPACO  " "
 NOME    ({PALAVRA}*{ESPACO}*)+
-BEGIN   "\\begin{"
-END     "\\end{"
-FINISH  "}"
 
 %%
 
-"\\begin{document}"  |
+"\\begin{document}"  { return BEGIN; }
 "\\begin{enumerate}" |
 "\\begin{itemize}"   |
 "\\end{itemize}"     |
@@ -24,7 +21,7 @@ FINISH  "}"
 .                      {puts("não reconhecido");}
 %%
 
-main(argc, argv)
+int main(argc, argv)
 int argc;
 char **argv;
 {
@@ -35,6 +32,7 @@ char **argv;
     }
   }
   yylex();
+  return 0;
 }
 
 
