@@ -54,10 +54,10 @@ principal: %empty
   | inicio corpoLista fim { }
 ;
 
-inicio: BEGINDOCUMENT { addref($<string>1); }
+inicio: BEGINDOCUMENT { addref("\n[//]: # (BEGIN MARKDOWN)\n"); }
 ;
 
-fim: ENDDOCUMENT { addref($<string>1); }
+fim: ENDDOCUMENT { addref("\n[//]: # (END MARKDOWN)\n"); }
 ;
 
 corpoLista: /* Vazio */

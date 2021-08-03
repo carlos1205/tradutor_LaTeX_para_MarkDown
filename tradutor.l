@@ -22,7 +22,7 @@ ESPACO          " "+
 %%
 
 "\\begin{document}"                     { yylval.string = yytext;  return BEGINDOCUMENT; }
-end                                    { yylval.string = yytext;  return ENDDOCUMENT; }
+"\\end{document}"                       { yylval.string = yytext;  return ENDDOCUMENT; }
 USEPACKAGE                              { }
 TITLE                                   { }
 AUTHOR                                  { }
