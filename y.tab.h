@@ -55,7 +55,8 @@ extern int yydebug;
     BEGINDOCUMENT = 261,
     ENDDOCUMENT = 262,
     CONTEUDO = 263,
-    PACOTE = 264
+    CAPITULO = 264,
+    PACOTE = 265
   };
 #endif
 /* Tokens.  */
@@ -65,7 +66,8 @@ extern int yydebug;
 #define BEGINDOCUMENT 261
 #define ENDDOCUMENT 262
 #define CONTEUDO 263
-#define PACOTE 264
+#define CAPITULO 264
+#define PACOTE 265
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -75,7 +77,7 @@ union YYSTYPE
 
   char *string;
 
-#line 79 "y.tab.h"
+#line 81 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

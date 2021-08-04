@@ -1,16 +1,10 @@
 
 [//]: # (markdown class:)
-
 [//]: # (markdown package:)
 
 
 [//]: # (markdown title:)
-\title{Trabalho do Demo}
-\begin{document}
+[//]: # (markdown author:)
 
 [//]: # (BEGIN MARKDOWN)
-
-    Hello World
-
-[//]: # (END MARKDOWN)
 

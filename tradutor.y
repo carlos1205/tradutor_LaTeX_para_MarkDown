@@ -19,18 +19,17 @@
 }
 
 %token <string>AUTOR <string>TITULO <string>CLASSE BEGINDOCUMENT ENDDOCUMENT
-%token <string>CONTEUDO
+%token <string>CONTEUDO 
+%token <string>CAPITULO
 %token <string>PACOTE
 %type  <string>principal
 
 %%
 documentoLatex: configuracao identificacao principal
 
-configuracao: 
-%empty |
-CLASSE PACOTE {
+configuracao: CLASSE PACOTE {
   char *c = "\n[//]: # (markdown class:)";
-  char *p = "\n[//]: # (markdown package:)\n";
+  char *p = "[//]: # (markdown package:)\n";
   addref(c);
   addref(p); 
 }
@@ -40,8 +39,8 @@ CLASSE PACOTE {
 ;
 
 identificacao: TITULO AUTOR {
-  char *t = "\n[//]: # (markdown title:)\n";
-  char *a = "\n[//]: # (markdown author:)\n";
+  char *t = "\n[//]: # (markdown title:)";
+  char *a = "[//]: # (markdown author:)";
   addref(t);
   addref(a);
 }| TITULO {
@@ -50,45 +49,16 @@ identificacao: TITULO AUTOR {
 }
 ;
 
-principal: %empty
-  | inicio fim { }
-  | inicio corpoLista fim { }
+principal: inicio corpoLista fim { }
 ;
 
 inicio: BEGINDOCUMENT { addref("\n[//]: # (BEGIN MARKDOWN)\n"); }
 ;
 
+//corpoLista: CAPITULO { addref("\n[//]: # (CAPITULO MARKDOWN)\n"); };
+
 fim: ENDDOCUMENT { addref("\n[//]: # (END MARKDOWN)\n"); }
 ;
-
-corpoLista: CONTEUDO { addref($1);}
-;
-
-/* corpoLista: "\chapter{"NOME"}" corpo capitulo | corpo;
-
-capitulo: CHAPTER '{' NOME '}' corpo capitulo | "\chapter{"NOME"}";
-
-secao: "\section{"NOME"}" corpo secao | corpo;
-
-subsecao: "\subsection{"NOME"}" corpo subsecao | corpo;
-
-corpo: texto | texto corpo | textoEstilo corpo | listas corpo;
-
-texto: "\paragraph{"CONTEUDO"}" {
-  fprintf("saida.md", "\n%s",$1);
-};
-
-textoEstilo: "\bf{"CONTEUDO"}" | "\underline{"CONTEUDO"}" | "\it{"CONTEUDO"}";
-
-listas: listaNumerada | listaItens;
-
-listaNumerada: "\begin{enumerate}" itensLNumerada "\end{enumerate}";
-
-itensLNumerada: "\item{"CONTEUDO"}" | "\item{"CONTEUDO"}" itensLNumerada | listas;
-
-listaItens: "\begin{itemize}" itensLItens "\end{itemize}";
-
-itensLItens: "\item{"CONTEUDO"}" | "\item{"CONTEUDO"}" itensLItens | listas; */ 
 %%
 
 

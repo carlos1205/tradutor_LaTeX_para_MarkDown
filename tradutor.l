@@ -18,6 +18,8 @@ LETRAS       [a-zA-Z]+
 ESPACO       " "+
 FRASE        ({LETRAS}*{ESPACO}*{NUMBER}*)+
 NEWLINE      \n
+TAB          [ \t]
+
 
 TAG          ({FRASE}+","*)+
 DESC         "["+{ESPACO}*{TAG}+{ESPACO}*"]"+
@@ -27,7 +29,8 @@ PACKAGE      "\\usepackage"{DESC}?{TIPE}
 
 NOME         ({LETRAS}*{ESPACO}*)+
 TITULO       "\\title{"{NOME}"}"
-AUTOR        "\\author{"{NOME}"}"     
+AUTOR        "\\author{"{NOME}"}" 
+CAPITU       "\\chapter{"{NOME}"}"    
 %%
 
 "\\begin{document}"                     { yylval.string = yytext;  return BEGINDOCUMENT; }
@@ -36,9 +39,11 @@ AUTOR        "\\author{"{NOME}"}"
 {PACKAGE}                               { yylval.string = yytext;  return PACOTE;}
 {TITULO}                                { yylval.string = yytext;  return TITULO;}
 {AUTOR}                                 { yylval.string = yytext;  return AUTOR;}
+{CAPITU}                                { yylval.string = yytext;  return CAPITULO;}
 {FRASE}                                 { yylval.string = yytext;  return CONTEUDO;}
 
 {NEWLINE}                               { /*Ignora quebra de linha*/}
+{TAB}                                   { /*Ignora o TAB*/}
 .                                       { yyerror("Token não reconhecido^: ");}
 %%  
 
