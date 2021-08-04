@@ -18,7 +18,7 @@
   char *string;
 }
 
-%token AUTOR TITULO <string>CLASSE BEGINDOCUMENT ENDDOCUMENT
+%token <string>AUTOR <string>TITULO <string>CLASSE BEGINDOCUMENT ENDDOCUMENT
 %token <string>CONTEUDO
 %token <string>PACOTE
 %type  <string>principal
@@ -39,17 +39,14 @@ CLASSE PACOTE {
 }
 ;
 
-identificacao: 
-%empty |
-TITULO AUTOR {
+identificacao: TITULO AUTOR {
   char *t = "\n[//]: # (markdown title:)\n";
   char *a = "\n[//]: # (markdown author:)\n";
   addref(t);
   addref(a);
-}
-| TITULO {
-  char *t = "\n[//]: # (markdown title:)\n";
-  addref(t);
+}| TITULO {
+  addref("\n[//]: # (markdown title:)");
+  addref($1);
 }
 ;
 

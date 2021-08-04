@@ -476,7 +476,7 @@ union yyalloc
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  8
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  14
+#define YYNRULES  13
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  17
 
@@ -526,8 +526,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    30,    31,    37,    43,    44,    50,    56,
-      57,    58,    61,    64,    67
+       0,    27,    27,    30,    31,    37,    42,    47,    53,    54,
+      55,    58,    61,    64
 };
 #endif
 
@@ -575,8 +575,8 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       3,     5,     0,     6,     4,     1,     8,     9,     7,    12,
-       2,     0,    13,    14,    10,     0,    11
+       3,     5,     0,     0,     4,     1,     7,     8,     6,    11,
+       2,     0,    12,    13,     9,     0,    10
 };
 
   /* YYPGOTO[NTERM-NUM].  */
@@ -617,15 +617,15 @@ static const yytype_int8 yystos[] =
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    10,    11,    12,    12,    12,    13,    13,    13,    14,
-      14,    14,    15,    16,    17
+       0,    10,    11,    12,    12,    12,    13,    13,    14,    14,
+      14,    15,    16,    17
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     3,     0,     2,     1,     0,     2,     1,     0,
-       2,     3,     1,     1,     1
+       0,     2,     3,     0,     2,     1,     2,     1,     0,     2,
+       3,     1,     1,     1
 };
 
 
@@ -1339,9 +1339,9 @@ yyreduce:
 #line 1340 "y.tab.c"
     break;
 
-  case 7:
-#line 44 "tradutor.y"
-             {
+  case 6:
+#line 42 "tradutor.y"
+                            {
   char *t = "\n[//]: # (markdown title:)\n";
   char *a = "\n[//]: # (markdown author:)\n";
   addref(t);
@@ -1350,41 +1350,41 @@ yyreduce:
 #line 1351 "y.tab.c"
     break;
 
-  case 8:
-#line 50 "tradutor.y"
-         {
-  char *t = "\n[//]: # (markdown title:)\n";
-  addref(t);
+  case 7:
+#line 47 "tradutor.y"
+          {
+  addref("\n[//]: # (markdown title:)");
+  addref((yyvsp[0].string));
 }
 #line 1360 "y.tab.c"
     break;
 
-  case 10:
-#line 57 "tradutor.y"
+  case 9:
+#line 54 "tradutor.y"
                { }
 #line 1366 "y.tab.c"
     break;
 
-  case 11:
-#line 58 "tradutor.y"
+  case 10:
+#line 55 "tradutor.y"
                           { }
 #line 1372 "y.tab.c"
     break;
 
-  case 12:
-#line 61 "tradutor.y"
+  case 11:
+#line 58 "tradutor.y"
                       { addref("\n[//]: # (BEGIN MARKDOWN)\n"); }
 #line 1378 "y.tab.c"
     break;
 
-  case 13:
-#line 64 "tradutor.y"
+  case 12:
+#line 61 "tradutor.y"
                  { addref("\n[//]: # (END MARKDOWN)\n"); }
 #line 1384 "y.tab.c"
     break;
 
-  case 14:
-#line 67 "tradutor.y"
+  case 13:
+#line 64 "tradutor.y"
                      { addref((yyvsp[0].string));}
 #line 1390 "y.tab.c"
     break;
@@ -1622,7 +1622,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 95 "tradutor.y"
+#line 92 "tradutor.y"
 
 
 

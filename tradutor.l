@@ -24,12 +24,18 @@ DESC         "["+{ESPACO}*{TAG}+{ESPACO}*"]"+
 TIPE         "{"{FRASE}"}"
 CLASS        "\\documentclass"{DESC}?{TIPE}
 PACKAGE      "\\usepackage"{DESC}?{TIPE}
+
+NOME         ({LETRAS}*{ESPACO}*)+
+TITULO       "\\title{"{NOME}"}"
+AUTOR        "\\author{"{NOME}"}"     
 %%
 
 "\\begin{document}"                     { yylval.string = yytext;  return BEGINDOCUMENT; }
 "\\end{document}"                       { yylval.string = yytext;  return ENDDOCUMENT; }
 {CLASS}                                 { yylval.string = yytext;  return CLASSE;}
 {PACKAGE}                               { yylval.string = yytext;  return PACOTE;}
+{TITULO}                                { yylval.string = yytext;  return TITULO;}
+{AUTOR}                                 { yylval.string = yytext;  return AUTOR;}
 {FRASE}                                 { yylval.string = yytext;  return CONTEUDO;}
 
 {NEWLINE}                               { /*Ignora quebra de linha*/}
