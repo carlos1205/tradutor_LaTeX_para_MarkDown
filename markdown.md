@@ -1,8 +1,8 @@
 
-[//]: # (markdown class):
-\documentclass[artigo, 12pt]{artigo}
+[//]: # (markdown class:)
 
-\begin{document}
+[//]: # (markdown package:)
+
 
 [//]: # (BEGIN MARKDOWN)
 

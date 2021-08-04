@@ -49,23 +49,23 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    PACOTE = 258,
-    AUTOR = 259,
-    TITULO = 260,
-    CLASSE = 261,
-    BEGINDOCUMENT = 262,
-    ENDDOCUMENT = 263,
-    CONTEUDO = 264
+    AUTOR = 258,
+    TITULO = 259,
+    CLASSE = 260,
+    BEGINDOCUMENT = 261,
+    ENDDOCUMENT = 262,
+    CONTEUDO = 263,
+    PACOTE = 264
   };
 #endif
 /* Tokens.  */
-#define PACOTE 258
-#define AUTOR 259
-#define TITULO 260
-#define CLASSE 261
-#define BEGINDOCUMENT 262
-#define ENDDOCUMENT 263
-#define CONTEUDO 264
+#define AUTOR 258
+#define TITULO 259
+#define CLASSE 260
+#define BEGINDOCUMENT 261
+#define ENDDOCUMENT 262
+#define CONTEUDO 263
+#define PACOTE 264
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

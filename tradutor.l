@@ -20,19 +20,21 @@ FRASE        ({LETRAS}*{ESPACO}*{NUMBER}*)+
 NEWLINE      \n
 
 TAG          ({FRASE}+","*)+
-PCLASS       "["+{ESPACO}*{TAG}+{ESPACO}*"]"+
+DESC         "["+{ESPACO}*{TAG}+{ESPACO}*"]"+
 TIPE         "{"{FRASE}"}"
-BASECLASS    "\\documentclass"{PCLASS}?{TIPE}
+CLASS        "\\documentclass"{DESC}?{TIPE}
+PACKAGE      "\\usepackage"{DESC}?{TIPE}
 %%
 
 "\\begin{document}"                     { yylval.string = yytext;  return BEGINDOCUMENT; }
 "\\end{document}"                       { yylval.string = yytext;  return ENDDOCUMENT; }
-{BASECLASS}                             { yylval.string = yytext;  return CLASSE;}
+{CLASS}                                 { yylval.string = yytext;  return CLASSE;}
+{PACKAGE}                               { yylval.string = yytext;  return PACOTE;}
 {FRASE}                                 { yylval.string = yytext;  return CONTEUDO;}
 
 {NEWLINE}                               { /*Ignora quebra de linha*/}
-.                                       { yyerror("Token não reconhecido^: "); printf(" %s\n",yytext);}
-%%
+.                                       { yyerror("Token não reconhecido^: ");}
+%%  
 
 /* int main(argc, argv)
 int argc;

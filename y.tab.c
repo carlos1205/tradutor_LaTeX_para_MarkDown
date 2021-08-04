@@ -124,23 +124,23 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    PACOTE = 258,
-    AUTOR = 259,
-    TITULO = 260,
-    CLASSE = 261,
-    BEGINDOCUMENT = 262,
-    ENDDOCUMENT = 263,
-    CONTEUDO = 264
+    AUTOR = 258,
+    TITULO = 259,
+    CLASSE = 260,
+    BEGINDOCUMENT = 261,
+    ENDDOCUMENT = 262,
+    CONTEUDO = 263,
+    PACOTE = 264
   };
 #endif
 /* Tokens.  */
-#define PACOTE 258
-#define AUTOR 259
-#define TITULO 260
-#define CLASSE 261
-#define BEGINDOCUMENT 262
-#define ENDDOCUMENT 263
-#define CONTEUDO 264
+#define AUTOR 258
+#define TITULO 259
+#define CLASSE 260
+#define BEGINDOCUMENT 261
+#define ENDDOCUMENT 262
+#define CONTEUDO 263
+#define PACOTE 264
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -526,8 +526,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    26,    26,    29,    30,    36,    42,    43,    49,    55,
-      56,    57,    60,    63,    66
+       0,    27,    27,    30,    31,    37,    43,    44,    50,    56,
+      57,    58,    61,    64,    67
 };
 #endif
 
@@ -536,10 +536,10 @@ static const yytype_int8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "PACOTE", "AUTOR", "TITULO", "CLASSE",
-  "BEGINDOCUMENT", "ENDDOCUMENT", "CONTEUDO", "$accept", "documentoLatex",
-  "configuracao", "identificacao", "principal", "inicio", "fim",
-  "corpoLista", YY_NULLPTR
+  "$end", "error", "$undefined", "AUTOR", "TITULO", "CLASSE",
+  "BEGINDOCUMENT", "ENDDOCUMENT", "CONTEUDO", "PACOTE", "$accept",
+  "documentoLatex", "configuracao", "identificacao", "principal", "inicio",
+  "fim", "corpoLista", YY_NULLPTR
 };
 #endif
 
@@ -552,7 +552,7 @@ static const yytype_int16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF (-9)
+#define YYPACT_NINF (-8)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -566,8 +566,8 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -4,     0,     4,     1,    -9,    -9,     3,    -2,    -9,    -9,
-      -9,    -8,    -9,    -9,    -9,     2,    -9
+      -3,    -6,     4,     1,    -8,    -8,     3,     2,    -8,    -8,
+      -8,    -7,    -8,    -8,    -8,     0,    -8
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -582,7 +582,7 @@ static const yytype_int8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -9,    -9,    -9,    -9,    -9,    -9,    -7,    -9
+      -8,    -8,    -8,    -8,    -8,    -8,    -5,    -8
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -596,22 +596,22 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      12,    13,     1,     4,     5,     9,     6,     8,    16,     0,
-      12
+      12,    13,     1,     4,     5,     6,     8,    12,     9,     0,
+      16
 };
 
 static const yytype_int8 yycheck[] =
 {
-       8,     9,     6,     3,     0,     7,     5,     4,    15,    -1,
-       8
+       7,     8,     5,     9,     0,     4,     3,     7,     6,    -1,
+      15
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     6,    11,    12,     3,     0,     5,    13,     4,     7,
-      14,    15,     8,     9,    16,    17,    16
+       0,     5,    11,    12,     9,     0,     4,    13,     3,     6,
+      14,    15,     7,     8,    16,    17,    16
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -1321,9 +1321,9 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 30 "tradutor.y"
+#line 31 "tradutor.y"
               {
-  char *c = "\n[//]: # (markdown class:)\n";
+  char *c = "\n[//]: # (markdown class:)";
   char *p = "\n[//]: # (markdown package:)\n";
   addref(c);
   addref(p); 
@@ -1332,7 +1332,7 @@ yyreduce:
     break;
 
   case 5:
-#line 36 "tradutor.y"
+#line 37 "tradutor.y"
          { addref("\n[//]: # (markdown class):"); 
            addref((yyvsp[0].string));
 }
@@ -1340,7 +1340,7 @@ yyreduce:
     break;
 
   case 7:
-#line 43 "tradutor.y"
+#line 44 "tradutor.y"
              {
   char *t = "\n[//]: # (markdown title:)\n";
   char *a = "\n[//]: # (markdown author:)\n";
@@ -1351,7 +1351,7 @@ yyreduce:
     break;
 
   case 8:
-#line 49 "tradutor.y"
+#line 50 "tradutor.y"
          {
   char *t = "\n[//]: # (markdown title:)\n";
   addref(t);
@@ -1360,31 +1360,31 @@ yyreduce:
     break;
 
   case 10:
-#line 56 "tradutor.y"
+#line 57 "tradutor.y"
                { }
 #line 1366 "y.tab.c"
     break;
 
   case 11:
-#line 57 "tradutor.y"
+#line 58 "tradutor.y"
                           { }
 #line 1372 "y.tab.c"
     break;
 
   case 12:
-#line 60 "tradutor.y"
+#line 61 "tradutor.y"
                       { addref("\n[//]: # (BEGIN MARKDOWN)\n"); }
 #line 1378 "y.tab.c"
     break;
 
   case 13:
-#line 63 "tradutor.y"
+#line 64 "tradutor.y"
                  { addref("\n[//]: # (END MARKDOWN)\n"); }
 #line 1384 "y.tab.c"
     break;
 
   case 14:
-#line 66 "tradutor.y"
+#line 67 "tradutor.y"
                      { addref((yyvsp[0].string));}
 #line 1390 "y.tab.c"
     break;
@@ -1622,7 +1622,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 94 "tradutor.y"
+#line 95 "tradutor.y"
 
 
 

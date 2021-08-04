@@ -18,8 +18,9 @@
   char *string;
 }
 
-%token PACOTE AUTOR TITULO <string>CLASSE <string>BEGINDOCUMENT <string>ENDDOCUMENT
+%token AUTOR TITULO <string>CLASSE BEGINDOCUMENT ENDDOCUMENT
 %token <string>CONTEUDO
+%token <string>PACOTE
 %type  <string>principal
 
 %%
@@ -28,7 +29,7 @@ documentoLatex: configuracao identificacao principal
 configuracao: 
 %empty |
 CLASSE PACOTE {
-  char *c = "\n[//]: # (markdown class:)\n";
+  char *c = "\n[//]: # (markdown class:)";
   char *p = "\n[//]: # (markdown package:)\n";
   addref(c);
   addref(p); 
